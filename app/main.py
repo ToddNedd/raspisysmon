@@ -86,7 +86,7 @@ def main():
 
     mqttClient.disconnect()
     mqttClient.stop()
-
+    logging.info("Shuting down application")
 
 if __name__ == '__main__':
     main()
