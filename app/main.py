@@ -49,6 +49,7 @@ def main():
 
     try:
         env_mqtt_broker_port = os.environ['RSM_MQTT_BROKER_PORT']
+        env_mqtt_broker_port = int(env_mqtt_broker_port)
     except Exception as err:
          logging.warning(f"Mqtt broker port not specified - {err} - using default: {env_mqtt_broker_port}")
 
@@ -64,6 +65,7 @@ def main():
     
     try:
         env_update_interval = os.environ['RSM_UPDATE_INTERVAL_SEC']
+        env_update_interval = int(env_update_interval)
     except Exception as err:
          logging.warning(f"Update interval not specified - {err} - using default: {env_update_interval} seconds")
 
