@@ -1,5 +1,6 @@
 from multiprocessing import Event
 import signal
+import logging
 
 class GracefulShutdown:
   exit_now = Event()
@@ -8,4 +9,5 @@ class GracefulShutdown:
     signal.signal(signal.SIGTERM, self.exit_gracefully)
 
   def exit_gracefully(self,signum, frame):
+    logging.info("Shutdown requested.")
     self.exit_now.set()
