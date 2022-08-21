@@ -1,6 +1,5 @@
 FROM --platform=linux/arm/v8 python:alpine
 
-RUN apt-get update && apt-get install
 RUN install -y build-essentials
 
 WORKDIR /app
