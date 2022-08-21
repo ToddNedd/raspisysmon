@@ -50,6 +50,6 @@ jobs:
         run: |
           docker buildx build . \
             --platform ${{ steps.prepare.outputs.docker_platform }} \
-            --file ../dockerfiles/arm64.Dockerfile \
+            --file ./dockerfiles/arm64.Dockerfile \
             --tag ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }} \
             --output type=image,push=true
