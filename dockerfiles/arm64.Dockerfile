@@ -1,6 +1,8 @@
 FROM --platform=linux/arm/v8 python:alpine
 
-RUN install -y build-essentials
+RUN apk add --update-cache
+RUN apk add --update alpine-sdk
+RUN apk --no-cache --update add build-base
 
 WORKDIR /app
 
