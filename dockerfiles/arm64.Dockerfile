@@ -2,7 +2,7 @@ FROM --platform=linux/arm/v8 python:alpine
 
 RUN apk add --update-cache
 RUN apk add --update alpine-sdk
-RUN apk --no-cache --update add build-base
+RUN apk --no-cache --update add build-base linux-headers
 
 WORKDIR /app
 
