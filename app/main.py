@@ -83,6 +83,7 @@ def main():
     while not graceful_shutdown.exit_now.is_set():
         try:
             sysinfo.update(withCpuTemp=env_read_cpu_temp)
+            logging.info(f"payload: {sysinfo.to_json()}")
             mqttClient.publish(env_mqtt_topic, sysinfo.to_json())
         except Exception as err:
             logging.error(f"Error reading system values - {err}")
