@@ -1,9 +1,8 @@
-FROM --platform=linux/arm/v8 python:slim
+FROM --platform=linux/arm/v8 python:alpine
 
-RUN apt-get update
-RUN apt-get install build-essential -y
-#RUN apk --no-cache --update add build-base linux-headers
-#RUN apk --no-cache --update add build-base linux-headers
+RUN apk add --update-cache
+RUN apk add --update alpine-sdk
+RUN apk --no-cache --update add build-base linux-headers
 
 WORKDIR /app
 
