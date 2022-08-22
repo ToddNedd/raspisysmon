@@ -69,6 +69,7 @@ class SysInfo:
         self.cpu_freq_max = cpu_freq.max
 
         if withCpuTemp == True:
+            logging.info("try call vcgencmd")
             self.cpu_temp = self.get_cpu_temperature()
 
         mem = psutil.virtual_memory()
