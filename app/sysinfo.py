@@ -47,7 +47,7 @@ class SysInfo:
     def to_json(self):
         return json.dumps(dict(self), ensure_ascii=False)
 
-    def get_cpu_temp():
+    def get_cpu_temperature():
         tempFile = open( "/sys/class/thermal/thermal_zone0/temp" )
         cpu_temp = tempFile.read()
         tempFile.close()
