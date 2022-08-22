@@ -47,17 +47,13 @@ class SysInfo:
     def to_json(self):
         return json.dumps(dict(self), ensure_ascii=False)
 
-    def get_cpu_temperature(self):
-        process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
-        output, _error = process.communicate()
-        self.logger.info(f"vcgencmd: {output}")
-        #return float(output[output.index('=') + 1:output.rindex("'")])
-        retVal = float(output.split('=')[-1].strip().rstrip("'C"))
-        self.logger.info(f"vcgencmd float: {retVal}")
-        return retVal
+    def get_cpu_temp():
+        tempFile = open( "/sys/class/thermal/thermal_zone0/temp" )
+        cpu_temp = tempFile.read()
+        tempFile.close()
+        return round(float(cpu_temp)/1000, 2)
 
     def update(self, withCpuTemp=True):
-        self.logger.info(f"try call vcgencmd - withCpuTemp: {withCpuTemp}")
         self.cpu_usage_percent = psutil.cpu_percent(interval=1)
         cpu_times = psutil.cpu_times_percent(interval=1)
         self.cpu_times_user = cpu_times.user
@@ -70,7 +66,6 @@ class SysInfo:
         self.cpu_freq_max = cpu_freq.max
 
         if withCpuTemp == True:
-            self.logger.info("try call vcgencmd")
             self.cpu_temp = self.get_cpu_temperature()
 
         mem = psutil.virtual_memory()

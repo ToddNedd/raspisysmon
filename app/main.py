@@ -71,6 +71,10 @@ def main():
     except Exception as err:
          logging.warning(f"Update interval not specified - {err} - using default: {env_update_interval} seconds")
 
+    if not os.path.exists("/sys/class/thermal/thermal_zone0/temp"):
+        logging.warning("Linux temperature file not founde - CPU Temperature deactivated.")
+        env_read_cpu_temp = False
+
 
     
     graceful_shutdown = GracefulShutdown()
