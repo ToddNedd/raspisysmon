@@ -74,7 +74,7 @@ def main():
 
     
     graceful_shutdown = GracefulShutdown()
-    sysinfo = SysInfo()
+    sysinfo = SysInfo(logging.getLogger())
     mqttClient = MqttClient(env_mqtt_user_name, env_mqtt_password, env_mqtt_client_id)
     mqttClient.start()
     mqttClient.connect(env_mqtt_broker_url, env_mqtt_broker_port)
