@@ -60,8 +60,10 @@ def main():
 
     try:
         env_read_cpu_temp = os.environ['RSM_READ_TEMPERATURE']
+        logging.info(f"Read CPU Temp set to: {env_read_cpu_temp}")
     except Exception as err:
          logging.warning(f"Read CPU Temp not specified - {err} - using default: {env_read_cpu_temp}")
+
     
     try:
         env_update_interval = os.environ['RSM_UPDATE_INTERVAL_SEC']

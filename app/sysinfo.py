@@ -1,6 +1,7 @@
 import psutil
 from subprocess import PIPE, Popen
 import json
+import logging
 
 class SysInfo:
     def __init__(self):
@@ -49,7 +50,11 @@ class SysInfo:
     def get_cpu_temperature(self):
         process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
         output, _error = process.communicate()
-        return float(output[output.index('=') + 1:output.rindex("'")])
+        logging.info(f"vcgencmd: {output}")
+        #return float(output[output.index('=') + 1:output.rindex("'")])
+        retVal = float(output.split('=')[-1].strip().rstrip("'C"))
+        logging.info(f"vcgencmd float: {retVal}")
+        return retVal
 
     def update(self, withCpuTemp=True):
         self.cpu_usage_percent = psutil.cpu_percent(interval=1)
