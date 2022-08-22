@@ -57,6 +57,7 @@ class SysInfo:
         return retVal
 
     def update(self, withCpuTemp=True):
+        self.logger.info(f"try call vcgencmd - withCpuTemp: {withCpuTemp}")
         self.cpu_usage_percent = psutil.cpu_percent(interval=1)
         cpu_times = psutil.cpu_times_percent(interval=1)
         self.cpu_times_user = cpu_times.user
